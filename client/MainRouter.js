@@ -8,7 +8,7 @@ import Signin from './auth/Signin';
 import Profile from './user/Profile';
 import EditProfile from './user/EditProfile';
 import PrivateRoute from './auth/PrivateRoute';
-import Menu from './Core/Menu';
+import Menu from './core/Menu';
 import Buy from './houses/forSale/Buy'
 import Rent from './houses/forRent/Rent'
 import BuyDisplayHouse from './houses/forSale/DisplayHouse';
