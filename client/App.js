@@ -1,9 +1,9 @@
-import {ThemeProvider} from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import {indigo, pink} from '@material-ui/core/colors';
 import React from 'react';
 import MainRouter from './MainRouter';
 import {BrowserRouter} from 'react-router-dom';
+import {ThemeProvider} from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import {indigo, pink} from '@material-ui/core/colors';
 import {hot} from 'react-hot-loader';
 
 //Customized material-ui theme
@@ -11,7 +11,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757de8',
-      main: '#3f51b5',
+      main: '#2196f3',
       dark: '#002984',
       contrastText: '#fff'
     },
@@ -25,7 +25,7 @@ const theme = createMuiTheme({
     protectedTitle: pink['400'],
     type: 'light'
   }
-})
+});
 
 const App = () => (
   <BrowserRouter>
