@@ -7,7 +7,7 @@
     "development": "nodemon",
     "client": "webpack --config webpack.config.client.production.js",
     "server": "webpack --mode=production --config webpack.config.server.js",
-    "build": "concurrently \"npm run client\" \"npm run server\"",
+    "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
     "start": "NODE_ENV=production node ./dist/server.generated.js"
   },
   "keywords": [
