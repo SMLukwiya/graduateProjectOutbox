@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField'
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import {Card, CardActions, CardContent, Button, TextField,
+        Icon, Typography, Dialog, DialogActions, DialogContent,
+        DialogContentText, DialogTitle } from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
 import {Link} from 'react-router-dom';
-import {create} from './api-user.js';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
-const styles = (theme) => {
-  return ({
+import {create} from './api-user.js';
+
+const styles = theme => ({
   card: {
     maxWidth: 600,
+    height: 400,
     margin: 'auto',
     textAlign: 'center',
-    marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    marginTop: theme.spacing(15),
+    paddingBottom: theme.spacing(5)
   },
   error: {
     verticalAlign: 'middle'
@@ -42,13 +34,12 @@ const styles = (theme) => {
     marginBottom: theme.spacing(2)
   }
 })
-}
 
 class Signup extends Component {
   state = {
       name: '',
-      password: '',
       email: '',
+      password: '',
       open: false,
       error: ''
   }
@@ -93,6 +84,9 @@ class Signup extends Component {
           <CardActions>
             <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
           </CardActions>
+          <Typography type="headline" component="h2" className={classes.title}>
+            Already have an account <Link to={'/signup'}>Sign Up</Link>
+          </Typography>
         </Card>
           <Dialog open={this.state.open} disableBackdropClick={true}>
             <DialogTitle>New Account</DialogTitle>
