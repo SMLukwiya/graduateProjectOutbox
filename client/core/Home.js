@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Card, CardMedia, CardContent, Typography, Grid, Paper,
         CardActionArea, CardActions, Button } from '@material-ui/core';
 import house from '../assets/images/house1.jpg';
-import video from '../assets/videos/BUYsell.mp4'
 import {Link} from 'react-router-dom';
 import ReactPlayer from 'react-player';
 
@@ -259,9 +258,6 @@ class Home extends Component {
         </Paper>
         <br/>
         <br/>
-        <div className={classes.playerWrapper}>
-          <ReactPlayer url={video} playing className={classes.reactPlayer} width="100%" height="100%" playing />
-        </div>
         <Typography type = "body1">
           This is a video guide on BUYRENT
         </Typography>

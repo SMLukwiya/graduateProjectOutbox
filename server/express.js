@@ -26,12 +26,12 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 
-// import devBundle from './devBundle';//comment out for production.
+import devBundle from './devBundle';//comment out for production.
 const CURRENT_WORKING_DIR = process.cwd()
 const app = express();
 
 //comment out before building for production
-// devBundle.compile(app);
+devBundle.compile(app);
 
 //Setup middleware
 app.use(bodyParser.json());
