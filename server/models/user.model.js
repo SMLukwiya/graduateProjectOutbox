@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 import crypto from 'crypto';
 
 const UserSchema = new mongoose.Schema(

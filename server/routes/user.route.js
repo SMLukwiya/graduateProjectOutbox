@@ -4,16 +4,14 @@ import authenticateController from '../controllers/authenticate.controller';
 
 const router = express.Router();
 
+// Create user
 router.route('/api/users')
-  .get(userController.list)
-  .post(userController.create);
+  .post(userController.create)
 
-
-router.route('/api/users/:userId')
+// Read user by user unique Id
+router.route('/api/user/:uniqueId')
   .get(authenticateController.requireSignin, userController.read)
-  .put(authenticateController.requireSignin, authenticateController.hasAuthorization, userController.update)
-  .delete(authenticateController.requireSignin, authenticateController.hasAuthorization, userController.remove);
 
-router.param('userId', userController.userById);
+router.param('uniqueId', userController.userById);
 
 export default router;

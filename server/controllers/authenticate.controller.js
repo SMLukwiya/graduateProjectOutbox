@@ -1,4 +1,5 @@
 import User from '../models/user.model';
+import admin from '../models/admin.model'; // admin name and password
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import config from '../../config/config';
@@ -26,8 +27,31 @@ const signin = (req, res) => {
   })
 }
 
+// Admin Signin
+const adminSignin = (req, res) => {
+  if (admin.name === req.body.name && admin.password === req.body.password) {
+    const token = jwt.sign({_id: admin._id}, config.jwtSecret);
+    res.cookie("t", token, { expire: new Date() + 9999});
+    return res.json({
+      token,
+      admin: { _id: admin._id, name: admin.name }
+    })
+  }
+  else {
+    return res.json({error: 'Acess Denied'});
+  }
+}
+
 //Handle Signout by user and remove token from session storage
 const signout = (req, res) => {
+  res.clearCookie("t");
+  return res.status(200).json({
+    message: "Signed out"
+  })
+}
+
+//Handle Signout by employee and remove token from session storage
+const adminSignout = (req, res) => {
   res.clearCookie("t");
   return res.status(200).json({
     message: "Signed out"
@@ -51,4 +75,4 @@ const hasAuthorization = (req, res) => {
   next();
 }
 
-export default { signin, signout, requireSignin, hasAuthorization };
+export default { signin, adminSignin, signout, adminSignout, requireSignin, hasAuthorization };

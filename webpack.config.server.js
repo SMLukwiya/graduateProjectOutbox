@@ -1,3 +1,4 @@
+// Webpack configuration to compile server side React code
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
@@ -19,11 +20,21 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [ 'babel-loader' ]
+                use: [
+                    'babel-loader'
+                ]
             },
             {
                 test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
                 use: 'file-loader'
+            },
+            {
+              test: /\.html$/,
+              use: 'html-loader?attrs[]=video:src'
+            },
+            {
+              test: /\.mp4$/,
+              use: 'file-loader?name=videos/[name].[ext]',
             }
         ]
     }

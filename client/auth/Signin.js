@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField'
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import {Card, CardActions, CardContent, Button,
+        TextField, Icon, Typography } from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+
 import {signin} from './api-auth.js';
 import auth from '../auth/auth-helper';
 
-const styles = (theme) => {
-  return ({
+const styles = theme => ({
   card: {
     maxWidth: 600,
+    height: 400,
     margin: 'auto',
     textAlign: 'center',
-    marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    marginTop: theme.spacing(15),
+    paddingBottom: theme.spacing(5)
   },
   error: {
     verticalAlign: 'middle'
@@ -36,9 +32,12 @@ const styles = (theme) => {
   submit: {
     margin: 'auto',
     marginBottom: theme.spacing(2)
+  },
+  admin: {
+    marginRight: theme.spacing(),
+    color: theme.palette.openTitle
   }
 })
-}
 
 class Signin extends Component {
   state = {
@@ -53,7 +52,6 @@ class Signin extends Component {
       email: this.state.email || undefined,
       password: this.state.password || undefined
     }
-
     signin(user).then((data) => {
       if (data.error) {
         this.setState({error: data.error})
@@ -71,12 +69,9 @@ class Signin extends Component {
 
   render() {
     const {classes} = this.props
-    const {from} = this.props.location.state || {
-      from: {
-        pathname: '/'
-      }
-    }
+    const {from} = this.props.location.state || { from: { pathname: '/cart' }}
     const {redirectToReferrer} = this.state
+
     if (redirectToReferrer) {
       return (<Redirect to={from}/>)
     }
@@ -97,8 +92,14 @@ class Signin extends Component {
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" /*variant="raised"*/ onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
+        <Typography type="headline" component="h2" className={classes.title}>
+          Create an account <Link to={'/signup'}>Sign Up</Link>
+        </Typography>
+        <Link to="/adminsignin">
+          <Button color="primary" onClick={this.clickAdmin} className={classes.admin}>Admin</Button>
+        </Link>
       </Card>
     )
   }

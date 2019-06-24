@@ -5,10 +5,10 @@ import errorHandler from '../helpers/dbErrorHandler';
 
 // Handle POST request to create a user
 const create = (req, res, next) => {
-  const user = new User(req.body);
+  const user = new User(req.body)
   user.save((err, result) => {
     if (err) {
-      return status(400).json({
+      return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
       })
     }
@@ -39,36 +39,4 @@ const read = (req, res) => {
   return res.json(req.profile);
 }
 
-//Handle PUT request for a user
-const update = (req, res, next) => {
-  let user = req.profile;
-  user = _.extend(uses, req.body);
-  user.updated = Date.now();
-  user.save((err) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-    user.hashed_password = undefined;
-    user.salt = undefined;
-    res.json(user);
-  })
-}
-
-//Handle DELETE request for a user
-const remove = (req, res, next) => {
-  let user = req.profile
-  user.remove((err, deletedUser) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-    deletedUser.hashed_password = undefined;
-    deletedUser.salt = undefined;
-    res.json(deletedUser);
-  })
-}
-
-export default { create, userById, read, list, update, remove };
+export default { create, userById, read };
