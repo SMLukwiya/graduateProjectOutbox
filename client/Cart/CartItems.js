@@ -73,7 +73,7 @@ class CartItems extends Component {
                  </Link>
                </div><br/><br/><br/>
                <Divider />
-               {this.state.cartItems.length > 0 ? (<span>
+               {this.state.cartItems ? (<span>
                  {house.map((house, index) => {
                    return <span key={index}>
                      <Grid container spacing={2}>

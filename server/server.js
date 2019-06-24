@@ -8,7 +8,10 @@ mongoose.Promise = global.Promise;
 //Database Connection URL
 const url = config.mongoUri;
 
-mongoose.connect(url);
+mongoose.connect(url,  {
+  useCreateIndex: true,
+  useNewUrlParser: true
+});
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${url}`)
 })
