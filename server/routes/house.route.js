@@ -4,6 +4,19 @@ import authenticateController from '../controllers/authenticate.controller';
 
 const router = express.Router();
 
+// Admin create a house
+router.route('/api/house')
+  .post(houseController.create)
+
+// Admin list all available houses
+router.route('/api/admin/houses')
+  .get(houseController.list)
+
+// Admin read update and delete house
+router.route('/api/admin/:houseId')
+  .put(authenticateController.requireSignin, authenticateController.hasAuthorization, houseController.update)
+  .delete(authenticateController.requireSignin, authenticateController.hasAuthorization, houseController.remove)
+
 // All houses for sale
 router.route('/api/buy')
   .get(houseController.listBuy)
