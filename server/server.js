@@ -3,13 +3,14 @@ import app from './express';
 import mongoose from 'mongoose';
 
 
+mongoose.Promise = global.Promise;
+
 //Database Connection URL
 const url = config.mongoUri;
 
-mongoose.Promise = global.Promise;
 mongoose.connect(url);
 mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`)
+  throw new Error(`unable to connect to database: ${url}`)
 })
 
 app.listen(config.port, (err) => {
