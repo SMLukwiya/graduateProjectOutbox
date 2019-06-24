@@ -55,7 +55,7 @@ const read = (req, res) => {
 
 //Handle GET request for a list of all houses for admin
 const list = (req, res, next) => {
-  House.find({}, (err, houses) => {
+  House.find((err, houses) => {
     if (err) {
       return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
