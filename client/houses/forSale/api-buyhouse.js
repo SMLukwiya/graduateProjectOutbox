@@ -28,7 +28,7 @@ const read = (params) => {
 
 // Fetch API for Updating a house
 const update = (params, credentials, houses) => {
-  return fetch('/api/buy/update/'+params.houseId, {
+  return fetch('/api/buyhouse/'+params.houseId, {
     method: 'PUT',
     headers: {
       'Authorization': 'Bearer '+credentials.t
@@ -41,7 +41,7 @@ const update = (params, credentials, houses) => {
 
 // Fetch API for deleting a house
 const remove = (params, credentials) => {
-  return fetch('/api/buy/remove'+params.houseId, {
+  return fetch('/api/buyhouse/'+params.houseId, {
     method: 'DELETE',
     headers: {
       'Authorization': 'Bearer '+credentials.t
