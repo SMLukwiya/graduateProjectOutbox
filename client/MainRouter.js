@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Core/Home';
+import Home from './core/Home';
 import Signup from './user/Signup';
 import Signin from './auth/Signin';
-import Menu from './Core/Menu';
+import Menu from './core/Menu';
 import Buy from './houses/Buy'
 import Rent from './houses/Rent'
 import DisplayHouse from './houses/DisplayHouse';
 import Cart from './Cart/CartItems';
 import Checkout from './Cart/Checkout';
 import Order from './order/Order';
-import Footer from './Core/Footer';
+import Footer from './core/Footer';
 import CreateHouse from './houses/CreateHouse';
 import Favourite from './order/Favourite';
 import AdminPage from './admin/AdminPage';
