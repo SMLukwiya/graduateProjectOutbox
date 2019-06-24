@@ -1,3 +1,4 @@
+// Webpack configuration for compiling client side code
 const path = require('path');
 const webpack = require('webpack');
 const CURRENT_WORKING_DIR = process.cwd();
@@ -24,6 +25,14 @@ const config = {
             {
                 test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
                 use: 'file-loader'
+            },
+            {
+              test: /\.html$/,
+              use: 'html-loader?attrs[]=video:src'
+            },
+            {
+              test: /\.mp4$/,
+              use: 'file-loader?name=videos/[name].[ext]',
             }
         ]
     }
