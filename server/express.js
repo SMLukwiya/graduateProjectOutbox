@@ -53,45 +53,6 @@ app.get('*', (req, res) => {
   res.status(200).send(Template())
 })
 
-// app.get('*', (req, res) => {
-//   const sheets = new ServerStyleSheets();//from ServerStyleSheets
-//   const theme = createMuiTheme({
-//     palette: {
-//       primary: {
-//         light: '#757de8',
-//         main: '#3f51b5',
-//         dark: '#002984',
-//         contrastText: '#fff'
-//       },
-//       secondary: {
-//         light: '#ff79b0',
-//         main: '#ff4081',
-//         dark: '#c60055',
-//         contrastText: '#000'
-//       },
-//       openTitle: indigo['400'],
-//       protectedTitle: pink['400'],
-//       type: 'light'
-//     }
-//   });
-//   const generateClassName = createGenerateClassName()
-//   const context = {}
-//   const html = ReactDOMServer.renderToString(
-//     <StaticRouter location={req.url} context={context}>
-//       <JssProvider registry={sheets} generateClassName={generateClassName}>
-//         <ThemeProvider theme={theme} sheetsManager={new Map()}>
-//           <MainRouter/>
-//         </ThemeProvider>
-//       </JssProvider>
-//     </StaticRouter>
-//   )
-//   if (context.url) {
-//     return res.redirect(303, context.url)
-//   }
-//   const css = sheets.toString()
-//   res.status(200).send(Template({html:html, css:css}))
-// })
-
 //Catch unauthorized errors
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
