@@ -9,6 +9,7 @@ import { GridListTile, GridListTileBar } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import loading from '../assets/images/loading.gif';
 
 import {listBuy} from './api-house.js';
 
@@ -39,6 +40,10 @@ const styles = theme => ({
     image: {
       height: '100%'
     },
+    loading: {
+      paddingTop: '20%',
+      marginLeft: theme.spacing(10)
+    },
     tileBar: {
       backgroundColor: 'rgba(0, 0, 0, 0.72)',
       textAlign: 'left'
@@ -56,16 +61,18 @@ const styles = theme => ({
 
 class Houses extends Component {
   state = {
-    houses: []
+    houses: [],
+    _loading: false
   }
 
   componentDidMount() {
+    this.setState({ _loading: true })
     listBuy().then((data) => {
       if (data.error) {
         console.log(data.error);
       }
       else {
-        this.setState({ houses: data});
+        this.setState({ houses: data, _loading: false });
       }
     })
   }
@@ -77,7 +84,7 @@ class Houses extends Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        { houses.length > 0 ?
+        { this.state._loading ? <img alt='loading' src={loading} className={classes.loading}/> : houses.length > 0 ?
           (
             <GridList spacing={2} cellHeight={280} className={classes.gridList} cols={3}>
               { houses.map((house, i) => (

@@ -6,7 +6,7 @@ import {withStyles} from '@material-ui/styles';
 import {Redirect, Link} from 'react-router-dom';
 
 import {signin} from './api-auth.js';
-import auth from '../auth/auth-helper';
+import auth from './auth-helper';
 
 const styles = theme => ({
   card: {

@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Card, CardMedia, CardContent, Typography, Grid, Paper,
         CardActionArea, CardActions, Button } from '@material-ui/core';
 import house from '../assets/images/house1.jpg';
+import loading from '../assets/images/loading.gif'
 import {Link} from 'react-router-dom';
 import ReactPlayer from 'react-player';
 
@@ -18,8 +19,12 @@ const styles = theme => ({
   },
   cardMedia: {
    paddingTop: 10,
-   marginLeft: theme.spacing(2),
+   marginLeft: theme.spacing(1),
    marginRight: theme.spacing(2)
+ },
+ loading: {
+   paddingTop: 10,
+   marginLeft: theme.spacing(10)
  },
  cardContent: {
     flexGrow: 1,
@@ -78,16 +83,18 @@ const styles = theme => ({
 class Home extends Component {
   state = {
     rentHouses: [],
-    buyHouses: []
+    buyHouses: [],
+    _loading: false
   }
 
   componentDidMount() {
+    this.setState({_loading: true})
     homeRent().then((data) => {
       if (data.error) {
         console.log(data.error);
       }
       else {
-        this.setState({ rentHouses: data});
+        this.setState({ rentHouses: data, _loading: false });
       }
     })
     homeBuy().then((data) => {
@@ -120,7 +127,7 @@ class Home extends Component {
            </div>
           <CardContent>
             <Typography type = "body1" component = "h5" gutterBottom>
-              BUYRENT
+              BYARENT
             </Typography>
           </CardContent>
         </Card>
@@ -148,7 +155,7 @@ class Home extends Component {
         Latest Houses For Rent
       </Typography>
       <Grid container spacing={3}>
-        {rentHouses.map((house, index) => (
+        {this.state._loading ? <img alt='loading' src={loading} className={classes.loading}/> : rentHouses.map((house, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <CardActionArea>
@@ -185,7 +192,7 @@ class Home extends Component {
         Latest Houses For Sale
       </Typography>
       <Grid container spacing={3}>
-        {buyHouses.map((house, index) => (
+        {this.state._loading ? <img alt='loading' src={loading} className={classes.loading}/> : buyHouses.map((house, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <CardActionArea>
@@ -258,12 +265,6 @@ class Home extends Component {
         </Paper>
         <br/>
         <br/>
-        <Typography type = "body1">
-          This is a video guide on BUYRENT
-        </Typography>
-        <Typography type = "body2">
-          About BYARENT
-        </Typography><br/>
       </div>
     );
   }
